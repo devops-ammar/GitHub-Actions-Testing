@@ -1,11 +1,32 @@
 name: Test Workflow
 
-on: [push]
+#on: [push]
+
+on:
+    workflow_dispatch:
 
 jobs:
-  test:
+  success-inline-bash:
     runs-on: ubuntu-latest
 
     steps:
       - name: Print Hello
         run: echo "GitHub Actions works!"
+
+  success-inline-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello
+        run: |
+          print("GitHub Actions works!")
+        shell: python
+
+  success-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Hello
+        uses: devops-ammar/GitHub-Actions-Testing@3a2a8f7c2d4da446bca64c3b462b43f0d0982226
+        with:
+          message: "GitHub Actions works!"
