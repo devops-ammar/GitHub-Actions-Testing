@@ -27,6 +27,6 @@ jobs:
 
     steps:
       - name: Print Hello
-        uses: devops-ammar/GitHub-Actions-Testing@3a2a8f7c2d4da446bca64c3b462b43f0d0982226
+        uses: devops-ammar/GitHub-Actions-Testing@v1
         with:
           message: "GitHub Actions works!"
