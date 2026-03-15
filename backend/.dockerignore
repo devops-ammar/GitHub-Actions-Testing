@@ -1,0 +1,13 @@
+#Write me the .dockerignore file for Node JS Backend...
+
+node_modules
+dist
+build
+.git
+.gitignore
+Dockerfile
+.env
+*.log
+*.env
+*.dockerignore
+*.dockerfile

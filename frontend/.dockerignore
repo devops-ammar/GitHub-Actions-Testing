@@ -1,0 +1,13 @@
+#Write me the .dockerignore file for React JS Frontend...
+
+node_modules
+build
+dist
+.git
+.gitignore
+Dockerfile
+.env
+*.log
+*.env
+*.dockerignore
+*.dockerfile
