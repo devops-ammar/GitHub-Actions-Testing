@@ -93,5 +93,6 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
+          railway status
           cd backend
-          railway up
+          railway up --service backend-api
