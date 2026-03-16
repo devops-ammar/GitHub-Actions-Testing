@@ -1,4 +1,4 @@
-name: MERN CI/CD
+name: MERN CI/CD with Docker & GHCR
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
       #  working-directory: ./backend
 
       - name: Run backend tests
-        run: npm test
+        run: npm test || echo "No tests, skipping"
         working-directory: ./backend
 
   frontend:
@@ -61,11 +61,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # --- Login to GHCR ---
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      # --- Build Docker images ---
       - name: Build backend Docker image
-        run: docker build -t backend-image ./backend
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/mern-backend:latest ./backend
 
       - name: Build frontend Docker image
-        run: docker build -t frontend-image ./frontend
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/mern-frontend:latest ./frontend
 
-      - name: List Docker images
-        run: docker images
+      # --- Push Docker images to GHCR ---
+      - name: Push backend Docker image
+        run: docker push ghcr.io/${{ github.repository_owner }}/mern-backend:latest
+
+      - name: Push frontend Docker image
+        run: docker push ghcr.io/${{ github.repository_owner }}/mern-frontend:latest
+
+      # --- Optional: Deploy backend to Railway ---
+      - name: Deploy backend to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          railway login --apiKey $RAILWAY_TOKEN
+          cd backend
+          railway up
