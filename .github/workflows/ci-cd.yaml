@@ -86,8 +86,8 @@ jobs:
       # --- Optional: Deploy backend to Railway ---
       - name: Install Railway CLI
         run: |
-          bash <(curl -fsSL cli.new)
-          # npm i -g @railway/cli railway
+          # bash <(curl -fsSL cli.new)
+          npm install -g @railway/cli
 
       - name: Deploy backend to Railway
         env:
