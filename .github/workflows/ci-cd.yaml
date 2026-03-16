@@ -93,6 +93,5 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway status
           cd backend
-          railway up --service backend-api
+          railway up --service GitHub-Actions-Testing
