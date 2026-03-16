@@ -84,6 +84,10 @@ jobs:
         run: docker push ghcr.io/${{ github.repository_owner }}/mern-frontend:latest
 
       # --- Optional: Deploy backend to Railway ---
+      - name: Install Railway CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/railwayapp/cli/master/install.sh | sh
+
       - name: Deploy backend to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
