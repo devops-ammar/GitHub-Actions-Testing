@@ -93,6 +93,5 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway login --apiKey $RAILWAY_TOKEN
           cd backend
           railway up
