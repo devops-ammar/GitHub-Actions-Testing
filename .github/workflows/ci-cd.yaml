@@ -87,7 +87,7 @@ jobs:
       - name: Install Railway CLI
         run: |
           bash <(curl -fsSL cli.new)
-          npm i -g @railway/cli railway
+          # npm i -g @railway/cli railway
 
       - name: Deploy backend to Railway
         env:
